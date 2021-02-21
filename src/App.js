@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import TextEditor from "./components/TextEditor/TextEditor";
 
 function debounce(fn, interval = 0) {
   let timeout;
@@ -25,19 +26,20 @@ function App() {
   }, [article]);
 
   return (
-    <div className="mx-auto mt-8 max-w-2xl">
+    <div className="mx-auto max-w-2xl h-screen flex flex-col">
       <input
-        className="text-3xl w-full mb-4"
+        className="text-3xl mt-8 mb-4 px-4 w-full outline-none"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Title"
+        autoFocus={true}
       />
-      <textarea
-        className="w-full h-40"
-        value={article}
-        onChange={(e) => setArticle(e.target.value)}
+      <TextEditor
         placeholder="Type your content here..."
-      ></textarea>
+        value={article}
+        onChange={(e) => setArticle(e)}
+        className="flex-grow"
+      />
     </div>
   );
 }
